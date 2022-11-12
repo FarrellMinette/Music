@@ -4,24 +4,8 @@ from scamp import Session, wait
 import random
 
 session = Session()
-piano = session.new_part("piano")
 cello = session.new_part("cello")
 pitch = 55
-
-# Text to audio
-# Idea is to translate worlds into sounds. 
-# Each character's ASCII representation is used to encode the characters as pitches.
-# Input: String
-# Output: audio representation of the String
-def text_to_audio(text):
-    for char in text:
-        if char == " ":
-            wait(0.5)
-        elif char.isalnum():
-            piano.play_note(ord(char)-20, 0.5, 0.25)
-        else:   
-            wait(0.5)
-            piano.play_note(ord(char), 0.5, 0.25)
 
 # Random Walk to Audio
 # Random walk is a stochastic process well known and studied in statistics.
@@ -57,7 +41,6 @@ def random_walk_to_audio(pitch, iterations, threshold):
 
     print(sum(random_walk))
 
-text_to_audio("Hello World :)")
 random_walk_to_audio(pitch, 100, 0.55)
 random_walk_to_audio(pitch, 100, 0.45)
 
